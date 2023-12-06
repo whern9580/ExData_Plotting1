@@ -1,0 +1,19 @@
+#----------------------------------------------------------
+#PLOT 3
+
+Feb2007Power$Sub_metering_1 <- as.numeric(as.character(Feb2007Power$Sub_metering_1))
+Feb2007Power$Sub_metering_2 <- as.numeric(as.character(Feb2007Power$Sub_metering_2))
+Feb2007Power$Sub_metering_3 <- as.numeric(as.character(Feb2007Power$Sub_metering_3))
+
+plot3 <- function()   {
+  plot(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_1, type="l",ylab="Energy Sub Metering", xlab="")
+  lines(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_2,col='Red')
+  lines(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_3,col='Blue')
+  legend("topright", col=c("black", "red", "blue"), lwd=c(1,1,1), 
+       c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))}
+
+plot3()
+
+## Save file and close device
+dev.copy(png,"plot3.png", width=480, height=480)
+dev.off()
