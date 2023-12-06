@@ -1,0 +1,32 @@
+#----------------------------------------------------------
+#PLOT 4
+
+#split screen to in several panels using mfrow parameter and change margins and outer
+#margins using mar and oma parameters
+par(mfrow=c(2,2), mar=c(4,4,2,1), oma=c(0,0,2,0))
+#par(mfrow=c(2,2), mar=c(4,4,2,2))
+
+plot4 <- function() {
+  plot(Feb2007Power$newDateTime,Feb2007Power$Global_active_power,  type="l", 
+       ylab="Global Active Power (kilowatts)", xlab="")
+  plot(Feb2007Power$newDateTime,Feb2007Power$Voltage, type="l", 
+       ylab="Voltage (volt)", xlab="")
+  plot(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_1, type="l",ylab="Energy Sub Metering", xlab="")
+  lines(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_2,col='Red')
+  lines(Feb2007Power$newDateTime,Feb2007Power$Sub_metering_3,col='Blue')
+  legend("topright", col=c("black", "red", "blue"), lwd=c(1,1,1), 
+         c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+  legend("topright", col=c("black", "red", "blue"), lty=1, lwd=2, bty="n",
+         legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+  plot(Feb2007Power$newDateTime,Feb2007Power$Global_reactive_power,  type="l", 
+       ylab="Global Reactive Power (kilowatts)",xlab="")
+}
+
+
+plot4()
+
+## Save file and close device
+dev.copy(png,"plot3.png", width=480, height=480)
+dev.off()
+
+
