@@ -1,0 +1,24 @@
+#----------------------------------------------------------
+#PLOT 2
+
+#Time variable is character datatype, must change to time format
+#Combine Date and Time column
+newDateTime <- paste(Feb2007Power$Date, Feb2007Power$Time)
+
+#Name new DateTime column
+newDateTime <- setNames(newDateTime, "xDateTime")
+
+#Add new DateTime column to Feb2007Power
+Feb2007Power <- cbind(newDateTime, Feb2007Power)
+
+#New DateTime column is character datatype so much convert datatype to date time
+Feb2007Power$newDateTime <- as.POSIXct(newDateTime)
+
+plot2 <- plot(Feb2007Power$newDateTime, Feb2007Power$Global_active_power,type="l", ylab="Global Active Power (kilowatts)", xlab="")
+
+
+
+## Save file and close device
+dev.copy(png,"plot2.png", width=480, height=480)
+dev.off()
+
